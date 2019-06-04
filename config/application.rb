@@ -28,6 +28,8 @@ module Progettolab
     # the framework and any gems in your application.
     
     config.serve_static_assets = true
+    
+    config.assets.initialize_on_precompile = false
 
     # Don't generate system test files.
     config.generators.system_tests = nil
