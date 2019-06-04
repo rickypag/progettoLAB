@@ -207,7 +207,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   jbuilder (~> 2.5)
-  listen (>= 3.0.5)
+  listen
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.3)
