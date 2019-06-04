@@ -24,10 +24,15 @@ default: &default
 development:
   <<: *default
   database: metadata
-  username: postgres
-  password: biar
-  host: localhost
-  port: 5433
+  username: univercity
+  password: googleworkshop
+  host: metadata.czzhwg1jheui.eu-west-1.rds.amazonaws.com
+  port: 5432
+
+  #username: postgres
+  #password: biar
+  #host: localhost
+  #port: 5433
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
