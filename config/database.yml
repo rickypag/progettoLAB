@@ -84,6 +84,8 @@ test:
 #
 production:
   <<: *default
-  database: progettolab_production
-  username: progettolab
-  password: <%= ENV['PROGETTOLAB_DATABASE_PASSWORD'] %>
+  database: <%= ENV['PROGETTOLAB_DB_NAME'] %>
+  username: <%= ENV['PROGETTOLAB_DB_USERNAME'] %>
+  password: <%= ENV['PROGETTOLAB_DB_PASSWORD'] %>
+  host: <%= ENV['PROGETTOLAB_DB_HOST'] %>
+  port: <%= ENV['PROGETTOLAB_DB_PORT'] %>
