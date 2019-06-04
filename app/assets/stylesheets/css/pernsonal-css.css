@@ -1,0 +1,33 @@
+.image {
+    right: 5em;
+    width: 200px;
+    padding-bottom: 2em;
+}
+
+#image-b{
+    bottom: 0;
+}
+
+#image-f{
+    width: 100px;
+    padding-top: 2em;
+}
+
+#img-cont{
+    padding-top: 2em;
+}
+
+#aws-div{
+    padding-top: 3.5em;
+}
+
+#flutter-cont{
+    padding-top: 0em;
+}
+
+.opacity-2{opacity: 0.5;filter: alpha(opacity=50);}
+.opacity-3{opacity: 0.2;filter: alpha(opacity=30);}
+
+.davide-opaco{
+    filter: contrast(150%);
+}

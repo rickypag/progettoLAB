@@ -1,0 +1,178 @@
+<!-- Navigation -->
+<nav class="navbar navbar-light bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand text-light font-weight-bold" href="https://github.com/davidedc97/UniverCity/wiki">UniverCity</a>
+        <%= link_to "Accedi", new_user_session_path, :class => "btn btn-primary font-weight-bold" %>
+    </div>
+</nav>
+
+<!-- Masthead -->
+<div style="height: 100vh">
+    <header class="masthead text-white text-center h-100">
+        <!-- non so se togliere scurisce un po l'immagine è da vedere se piace (a me non tanto) -->
+        <%= image_tag("UniverCity.svg", :class => "bb") %></br></br>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-9 m-auto">
+                    <center>
+                        <h1 class="mb-5">
+                            Trova tutti gli appunti universitari di cui hai bisogno, tutte le volte che ne hai bisogno</h1>
+                        <%= link_to "Registrati ora", new_user_registration_path, :class => "btn btn-light mx-auto text-dark font-weight-bold pl-4 pr-4 pt-2 pb-2 m-5" %>
+                        <a class="btn btn-light mx-auto text-dark font-weight-bold pl-4 pr-4 pt-2 pb-2 m-5"
+                            href="...">Scarica l'app</a>
+                    </center>
+                </div>
+                <div>
+                    <button type="button" style="border-radius:25px;border-style:none;float:right;" onClick="document.getElementById('middle').scrollIntoView();"><i class="fas fa-arrow-down"></i></button>
+                </div>
+            </div>
+    
+        </div>
+    </header>
+</div>
+<!-- Image Showcases -->
+<section id="middle" class="showcase">
+    <div class="container-fluid p-0">
+        <div class="row no-gutters">
+            <div class="col-lg-6 order-lg-2 text-white showcase-img"
+                 style="background-image: url('img/mashup.png'); background-size: cover ; background-position: center;"></div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                <h2>Mash-Up</h2>
+                <p class="lead mb-0">Questo è quello che ci rende diversi dagli altri! Puoi scegliere
+                    differenti parti dagli appunti degli altri utenti e creare il tuo mashup
+                </p>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-lg-6 text-white showcase-img" style="background-image: url('img/preferiti.PNG'); background-size: cover; background-position: center;"></div>
+            <div class="col-lg-6 my-auto showcase-text">
+                <h2>Appunti preferiti</h2>
+                <p class="lead mb-0">Salva gli appunti degli utenti che usi di più tra i tuoi preferiti, per non perderli mai! </p>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-lg-6 order-lg-2 text-white showcase-img"
+                 style="background-image: url('img/mobileapp.jpeg'); background-size:cover; background-position: center;"></div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                <h2>Applicazione mobile disponibile</h2>
+                <p class="lead mb-0">La nostra applicazione è stata sviluppata pensando ai nostri utenti</p>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-lg-6 text-white showcase-img" style="background-image: url('img/feature.jpeg'); background-size: cover; background-position: center;"></div>
+            <div class="col-lg-6 my-auto showcase-text">
+                <h2>Cerca gli appunti</h2>
+                <p class="lead mb-0">Con un interfaccia user friendly puoi facilmente cercare tutti gli appunti,
+                    scaricali e tutto quello che dovrai fare sarà... studiare</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Icons Grid -->
+<section class="features-icons bg-light text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                    <div id="aws-div">
+                        <%= image_tag("img/aws.png", :class => "image") %>
+                        <h3>Amazon Web Services</h3>
+                        <p class="lead mb-0">Per una semplice scalabilità</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                    <div id="img-cont">
+                        <%= image_tag("img/bootstrap.png", :class => "image", :id => "image-b") %>
+                        <h3>Bootstrap 4</h3>
+                        <p class="lead mb-0">Per uno sviluppo veloce sul web</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                    <div id="flutter-cont">
+                        <%= image_tag("img/flutter.png", :class => "image", :id => "image-f") %>
+                        <h3>Flutter and Dart</h3>
+                        <p class="lead mb-0">Per uno sviluppo veloce sul mobile </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials text-center bg-light">
+    <div class="container">
+        <h2 class="mb-5">Our Developers</h2>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                    <%= image_tag("img/md.jpeg", :class => "img-fluid rounded-circle mb-3") %>
+                    <h5>Michele Dilollo</h5>
+                    <p class="font-weight-light mb-0">BackEnd Developers and AWS Mangement</p>
+                    <p class="font-weight-light mb-0">JavaScript, NodeJs, BootStrap 4</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                    <%= image_tag("img/dc.jpeg", :class => "img-fluid rounded-circle mb-3") %>
+                    <h5>Davide Brian Di Campi</h5>
+                    <p class="font-weight-light mb-0">Application - Server side Developers</p>
+                    <p class="font-weight-light mb-0">Flutter (DART), JavaScript, HTML5</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                    <%= image_tag("img/tc.jpeg", :class => "img-fluid rounded-circle mb-3") %>
+                    <h5>Tiziano Colagrossi</h5>
+                    <p class="font-weight-light mb-0">Mobile Application Developers</p>
+                    <p class="font-weight-light mb-0">Flutter (DART), HTML5, BootStrap 4</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="testimonial-item mx-auto mb-5 mb-lg-0 mt-3">
+                    <%= image_tag("img/rp.jpeg", :class => "img-fluid rounded-circle mb-3") %>
+                    <h5>Riccardo Pagliuca</h5>
+                    <p class="font-weight-light mb-0">BackEnd Developers and AWS Management</p>
+                    <p class="font-weight-light mb-0">JavaScript, NodeJs, Python</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="testimonial-item mx-auto mb-5 mb-lg-0 mt-3">
+                    <%= image_tag("img/lm.jpeg", :class => "img-fluid rounded-circle mb-3") %>
+                    <h5>Lucian Medrihan</h5>
+                    <p class="font-weight-light mb-0">WebApplication Developers</p>
+                    <p class="font-weight-light mb-0">HTML5, BootStrap 4, JavaScript</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col h-100 text-center text-lg-center my-auto">
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item">
+                        <a href="https://github.com/davidedc97/UniverCity">About</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a href="https://github.com/davidedc97/UniverCity/issues">Contact</a>
+                    </li>
+                </ul>
+                <p class="text-muted small mb-4 mb-lg-0">&copy; UniverCity 2019. All Rights Reserved.</p>
+            </div>
+
+        </div>
+    </div>
+</footer>

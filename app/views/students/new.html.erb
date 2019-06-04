@@ -1,0 +1,49 @@
+<div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Crea un Account!</h1>
+              </div>
+              <%= form_for(@student) do |f| %>
+              <%= render 'shared/error_messages' %>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <%= f.text_field :name, :class => 'form-control', :required => true, :placeholder => 'Nome' %>
+                  </div>
+                  <div class="col-sm-6">
+                    <%= f.text_field :surname, :class => 'form-control', :required => true, :placeholder => 'Cognome' %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.text_field :username, :class => 'form-control', :required => true, :placeholder => 'Username', autofocus: true %>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <%= f.text_field :university, :class => 'form-control', :required => true, :placeholder => 'Università' %>
+                  </div>
+                  <div class="col-sm-6">
+                    <%= f.text_field :faculty, :class => 'form-control', :required => true, :placeholder => 'Facoltà' %>
+                  </div>
+                </div>
+                <%= f.submit "Registrati", class: "btn btn-primary" %>
+              <% end %>
+              <hr>
+              <div class="text-center">
+                <a class="small" href="forgot-password.html" disabled>Password dimenticata?</a>
+              </div>
+              <div class="text-center">
+                <a class="small" href="/paginaLogin/login.php">Hai già un account? Login!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>

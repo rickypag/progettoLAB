@@ -1,0 +1,56 @@
+
+            
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <center>
+                    <div class="m-4 col-10">
+                        <center>
+                            <div class="card mx-auto">
+                                <div style="background-image: linear-gradient(360deg,#F2F2F2 10%,#7B797B 100%);opacity:0.5;border-style:none">
+                                <br>
+                                <br>
+                                <br>   
+                                <br>
+                                <br>
+                                <br>  
+                                <br>
+                                </div>
+                                <div class="card-img-overlay mt-5">
+                                    <%= image_tag("#{@student.image}", :alt => "profile pic", :class => "rounded-circle col-3") %>
+                                </div>
+                            </div>
+                            <div class="row my-mg">
+                                <div class="col text-center mt-5">
+                                    <p class="h3"><%= @student.username %></p>
+                                </div>
+                                <div class="col text-center mt-5">
+                                    <p class="h3"><%= @student.faculty %></p>
+                                </div>
+                            </div>
+                            <p class="lead text-danger mt-4">Bio</p>
+                            <hr class="my-1">
+                            <p id="userBio"><%= @student.bio %></p>
+                            
+                            <button id="modificaBtn" data-toggle="modal" data-target="#myModal1" class="btn btn-warning addmashup-button">
+                            	<span class="icon text-dark"><i class="fas fa-plus-circle"></i> </span>
+                            	<span class="text text-dark">Modifica</span>
+                        	</button>
+                        </center>
+                    </div>
+
+                    <div class="jumbotron col-10 p-0">
+                        <p class="lead text-danger pb-0 pt-3">Livello</p>
+                        <div class="row align-items-center ">
+                            <div class="col-2">
+                                <p id="userLvl" class="h3 text-dark ml-2"></p>
+                            </div>
+                            <div class="col-9 pr-4">
+                                <div class="progress mb-1" style="background-color: whitesmoke; height: 25px;">
+                                    <div id="xp_bar" class="progress-bar" role="progressbar" style="width: 0%; height: 25px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+
+                <!-- /.container-fluid -->

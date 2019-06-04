@@ -1,0 +1,183 @@
+<html>
+
+<head>
+    <title>UniverCity</title>
+    
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+
+    <%= stylesheet_link_tag 'css/univercity.min.css' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion side " id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">UniverCity</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+		
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+            
+            <a class="nav-link " href="ricerca.html">
+                <i class="fas text-l fa-search"></i>
+                <span class="text-l">Ricerca</span></a>
+            <a class="nav-link" href="index.php">
+                <i class="fas text-l fa-heart"></i>
+                <span class="text-l">Preferiti</span></a>
+            <a class="nav-link" href="mashup.html">
+                <i class="fas text-l fa-edit"></i>
+                <span class="text-l">Mashup</span></a>
+                <a class="nav-link" href="cronologia.html">
+                <i class="fas text-l fa-history"></i>
+                <span class="text-l">Cronologia</span></a>
+            <a class="nav-link" href="feedback.html">
+                <i class="fas text-l fa-comment-alt"></i>
+                <span class="text-l">Feedback</span></a>
+             <a class="nav-link" href="help.html">
+                <i class="fas text-l fa-question"></i>
+                <span class="text-l">Aiuto</span></a>
+        </li>
+
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+    
+            <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link  rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <div class="text-right mx-auto text-center mt-4 mb-3">
+                        <a href="#aboutModal" data-toggle="modal" data-target="#myModal" class="btn btn-warning rounded-btn p-auto pb-2">
+                            <span class="icon text-black-50"><i class="fas fa-plus-circle"></i> </span>
+                            <span class="text text-black-50">Carica</span>
+                        </a>
+                    </div>
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow pt-3">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2  d-lg-inline text-gray-600 small">
+                            <%= @student.name %> <%= @student.surname %>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item pt-3">
+                        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+                    </li>
+
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="text-center text-dark"><h4>Carica un file!</h4></div>
+                            <center class="p-4">
+                                <form id="upload-form" class="upload" action="upload.php" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <div class="custom-file">
+                                            <input type="file" name="file" class="custom-file-input" id="validatedCustomFile" required>
+                                            <label class="custom-file-label" for="validatedCustomFile">Scegli il file...</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="title" class="form-control form-control-user" id="titolo"  placeholder="Titolo..." required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="tags" class="form-control form-control-user" id="tags"  placeholder="Tags..." required>
+                                    </div>
+                                    <input type="submit" name="submit" value="Carica" class="btn btn-warning btn-user btn-block text-black-50" />
+                                </form>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Modal -->
+
+			<!-- Modal -->
+            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="text-center text-dark"><h4>Modifica la tua bio !</h4></div>
+                            <center class="p-4">
+                            	<div class="form-group">
+                                    <textarea id="newBio" name="newBio" class="form-control form-control-user" placeholder="Inserisci la tua nuova biografia" required></textarea>
+                                </div>
+                                <button id="bioBtn" class="btn btn-warning btn-sm btn-user btn-block text-black-50" >Modifica</button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Modal -->
+    
+      <%= yield %>
+      </div>
+      <!-- End of Main Content -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sicuro di volertene andare ?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger" href="index.php?logout=on">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
