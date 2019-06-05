@@ -31,11 +31,10 @@
                             <p class="lead text-danger mt-4">Bio</p>
                             <hr class="my-1">
                             <p id="userBio"><%= @student.bio %></p>
-                            
-                            <button id="modificaBtn" data-toggle="modal" data-target="#myModal1" class="btn btn-warning addmashup-button">
-                            	<span class="icon text-dark"><i class="fas fa-plus-circle"></i> </span>
-                            	<span class="text text-dark">Modifica</span>
-                        	</button>
+
+                        	<% if @student.email == @current_user.email %>
+								<%= link_to "Modifica il profilo", edit_student_path, :class => "btn btn-warning addmashup-button" %>
+							<% end %>
                         </center>
                     </div>
 

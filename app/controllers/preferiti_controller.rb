@@ -1,0 +1,2 @@
+class PreferitiController < ApplicationController
+end

@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
 	layout :resolve_layout
+	before_action :correct_user,   only: [:edit, :update]
 	
 	def new
 		@student = Student.new
@@ -19,6 +20,20 @@ class StudentsController < ApplicationController
 	
 	def show
 		@student = Student.find params[:id]
+		@current_user = current_user
+	end
+	
+	def edit
+		#@student = Student.find_by(email: current_user.email)
+	end
+	
+	def update
+		if @student.update_attributes(update_params)
+			flash[:success] = "Profile updated"
+			redirect_to @student
+		else
+			render 'edit'
+		end
 	end
 	
 	private
@@ -27,8 +42,10 @@ class StudentsController < ApplicationController
 		params.require(:student).permit(:username, :name, :surname, :university, :faculty)
 	end
 	
+	def update_params
+		params.require(:student).permit(:name, :surname, :university, :faculty, :bio)
+	end
 	
-  private
 
   def resolve_layout
     case action_name
@@ -39,5 +56,10 @@ class StudentsController < ApplicationController
     end
   end
   
+    def correct_user
+      @student = Student.find(params[:id])
+      @user = User.find_by(email: @student.email)
+      redirect_to(root_url) unless @user == current_user
+    end 
 	
 end

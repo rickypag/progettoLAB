@@ -30,6 +30,9 @@ module Progettolab
     config.serve_static_assets = true
     
     config.assets.initialize_on_precompile = false
+    
+    #config.autoload_paths += %W(#{config.root}/lib) # add this line
+    config.autoload_paths << Rails.root.join('app', 'lib', 'modules')
 
     # Don't generate system test files.
     config.generators.system_tests = nil

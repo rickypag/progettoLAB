@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   resources :students
+  resources :documents do
+	resources :likes
+  end
 end

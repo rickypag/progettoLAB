@@ -14,9 +14,13 @@
 
 <body id="page-top">
 
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+
 <!-- Page Wrapper -->
 <div id="wrapper">
-
+	
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion side " id="accordionSidebar">
 
@@ -87,7 +91,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2  d-lg-inline text-gray-600 small">
-                            <%= @student.name %> <%= @student.surname %>
+                            Profilo
                             </span>
                         </a>
                     </li>

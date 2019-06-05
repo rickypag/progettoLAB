@@ -1,0 +1,28 @@
+<div class="row">
+                            <div class="col align-items-center">
+								<canvas style="height:250px;" id="canvas-${id}" class="rounded img-fluid mx-auto d-block pl-3" alt="..."></canvas>
+                            </div>
+                            <div class="col-7 pl-4 pr-4">
+                                <div class="row align-items-center">
+                                    <h4><span class="badge badge-secondary">Info</span><%= @document.title %></h4>
+                                </div>
+                                <div class="row align-items-center">
+    	                            <div class="col-4 text-center"><%= button_to 'Like', document_likes_path(@document, :value => true), method: :post, class: "btn btn-sm btn-success" %><i class="fa fa-thumbs-up"></i></button> </div>
+    	                            <div class="col-4 text-center"><%= button_to 'Dislike', document_likes_path(@document, :value => false), method: :post, class: "btn btn-sm btn-danger" %><i class="fa fa-thumbs-down"></i></button></div>
+    	                            <div class="col-4 text-center"><button uuid=${id} class="btn btn-sm btn-primary" onclick=aggiungiPreferito(this) name="bntPref"><i class="fa fa-heart"></i></button></div>
+                                </div>
+                                <hr>
+                                <div class="row align-items-center">
+                                    <div class="col text-left">Proprietario</div>
+                                    <div class="col text-right"><%= @document.creator %></div>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col text-left text-success">Like</div>
+                                    <div id="likes" class="col text-right text-success"><%= @document.likes.where(:val => true).count %> <%= (@document.likes.where(:val => true).count) == 1 ? 'Like' : 'Likes'%></div>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col text-left text-danger">Dislike</div>
+                                    <div id="dislikes" class="col text-right text-danger"><%= @document.likes.where(:val => false).count %> <%= (@document.likes.where(:val => false).count) == 1 ? 'Dislike' : 'Dislikes'%></div>
+                                </div>
+                            </div>
+                        </div>
