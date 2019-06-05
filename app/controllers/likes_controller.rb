@@ -1,19 +1,22 @@
 class LikesController < ApplicationController
 	before_action :find_document
 
-	def create
-		val = params[:value]
+	def like
 		@student_id = Student.find_by(email: current_user.email)
-		if val && already_liked?
+		if already_liked?
 			flash[:notice] = "You can't like more than once"
-		elsif !val && already_disliked?
-			flash[:notice] = "You can't dislike more than once"
-		elsif !val && already_liked?
-			Like.where(student_id: @student, document_id: params[:document_id]).update(:val => val)
-		elsif @val && already_disliked?
-			Like.where(student_id: @student, document_id: params[:document_id]).update(:val => val)
 		else
-			@document.likes.create(student: Student.find_by(email: current_user.email), :val => val)
+			@document.likes.create(student: Student.find_by(email: current_user.email), :val => true)
+		end
+		redirect_to document_path(@document)
+	end
+	
+	def dislike
+		@student_id = Student.find_by(email: current_user.email)
+		if already_disliked?
+			flash[:notice] = "You can't dislike more than once"
+		elsif
+			@document.likes.create(student: Student.find_by(email: current_user.email), :val => false)
 		end
 		redirect_to document_path(@document)
 	end

@@ -7,9 +7,9 @@
                                     <h4><span class="badge badge-secondary">Info</span><%= @document.title %></h4>
                                 </div>
                                 <div class="row align-items-center">
-    	                            <div class="col-4 text-center"><%= button_to 'Like', document_likes_path(@document, :value => true), method: :post, class: "btn btn-sm btn-success" %><i class="fa fa-thumbs-up"></i></button> </div>
-    	                            <div class="col-4 text-center"><%= button_to 'Dislike', document_likes_path(@document, :value => false), method: :post, class: "btn btn-sm btn-danger" %><i class="fa fa-thumbs-down"></i></button></div>
-    	                            <div class="col-4 text-center"><button uuid=${id} class="btn btn-sm btn-primary" onclick=aggiungiPreferito(this) name="bntPref"><i class="fa fa-heart"></i></button></div>
+    	                            <div class="col-4 text-center"><%= button_to 'Like', document_mylike_path(@document), method: :post, class: "btn btn-sm btn-success" %><i class="fa fa-thumbs-up"></i></button> </div>
+    	                            <div class="col-4 text-center"><%= button_to 'Dislike', document_mydislike_path(@document), method: :post, class: "btn btn-sm btn-danger" %><i class="fa fa-thumbs-down"></i></button></div>
+    	                            <div class="col-4 text-center"><%= button_to 'Preferiti', document_preferiti_index_path(@document), method: :post, class: "btn btn-sm btn-primary" %><i class="fa fa-heart"></i></button></div>
                                 </div>
                                 <hr>
                                 <div class="row align-items-center">

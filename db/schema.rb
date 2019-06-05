@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_04_212556) do
+ActiveRecord::Schema.define(version: 2019_06_05_135754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,12 @@ ActiveRecord::Schema.define(version: 2019_06_04_212556) do
   create_table "feedback", primary_key: ["feed", "username"], force: :cascade do |t|
     t.string "username", null: false
     t.string "feed", null: false
+  end
+
+  create_table "likes", id: false, force: :cascade do |t|
+    t.string "document_id", limit: 36, null: false
+    t.string "student_id", limit: 20, null: false
+    t.boolean "val", null: false
   end
 
   create_table "page", id: :string, limit: 36, force: :cascade do |t|
@@ -98,6 +104,8 @@ ActiveRecord::Schema.define(version: 2019_06_04_212556) do
   add_foreign_key "creator", "document", column: "document", primary_key: "uuid", name: "creator_document_fkey"
   add_foreign_key "creator", "student", column: "student", primary_key: "username", name: "creator_student_fkey"
   add_foreign_key "document", "student", column: "creator", primary_key: "username", name: "document_creator_fkey"
+  add_foreign_key "likes", "document", primary_key: "uuid", name: "likes_document_id_fkey"
+  add_foreign_key "likes", "student", primary_key: "username", name: "likes_student_id_fkey"
   add_foreign_key "page", "student", column: "owner", primary_key: "username", name: "page_owner_fkey"
   add_foreign_key "rating", "document", column: "document", primary_key: "uuid", name: "rating_document_fkey"
   add_foreign_key "rating", "student", column: "student", primary_key: "username", name: "rating_student_fkey"

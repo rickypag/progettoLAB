@@ -10,7 +10,14 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   resources :students
+  
   resources :documents do
 	resources :likes
+	post 'dislike', to: 'likes#dislike', as: 'mydislike'
+	post 'like',    to: 'likes#like',    as: 'mylike'
+  end
+  
+  resources :documents do
+	resources :preferiti
   end
 end
