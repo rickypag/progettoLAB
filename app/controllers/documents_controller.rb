@@ -1,6 +1,37 @@
+require 'open-uri'
+
 class DocumentsController < ApplicationController
 	include ::DocumentsApi
 	layout 'principale'
+	
+	def pdf
+		#pdf_file = ::DocumentsApi.download_doc("b2055bf7-4d18-40b8-99cf-a0cbe8e2f512")
+		#pdf_filename = File.join(Rails.root, "public/uploads/test.pdf")
+		#send_file(pdf_file, :filename => "aaa.pdf", :disposition => 'inline', :type => "application/pdf")
+		uuid = params[:document_id]
+		data = open("https://ogv7kvalpf.execute-api.eu-west-1.amazonaws.com/dev/document/" + uuid) 
+		send_data data.read, filename: "doc.pdf", type: "application/pdf", disposition: 'inline', stream: 'true', buffer_size: '4096'
+	end
+	
+	def txt
+		uploaded_io = params[:document][:file]
+		title = params[:document][:title]
+		uuid = ::DocumentsApi.upload_txt(uploaded_io,title)
+		render plain: uuid
+		#file = (JSON.parse resp)['Files'][0]['FileData']
+		#render plain: resp
+		#file = Base64.decode64(file)
+		#uuid = ::DocumentsApi.getWhatEver(file,params[:document][:title])
+		#if uuid
+		#	flash[:success] = "Documento caricato"
+		#	@document = Document.find(uuid)
+		#	redirect_to @document
+		#else
+		#	flash[:error] = "errore"
+		#	render 'documents/new'
+		#end
+		#send_data file, filename: "doc.pdf", type: "application/pdf", disposition: 'inline'
+	end
 	
 	def index
 		if(params.has_key?(:query)  && params[:query] != "")
@@ -24,8 +55,15 @@ class DocumentsController < ApplicationController
 	
 	def create
 		uploaded_io = params[:document][:file]
-		a = ::DocumentsApi.getWhatEver(uploaded_io,params[:document][:title])
-		render a
+		uuid = ::DocumentsApi.getWhatEver(uploaded_io.tempfile,params[:document][:title])
+		if uuid
+			flash[:success] = "Documento caricato"
+			@document = Document.find(uuid)
+			redirect_to @document
+		else
+			flash[:error] = "errore"
+			render 'students/new'
+		end
 		#File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
 		#	file.write(uploaded_io.read)
 		#end
@@ -42,5 +80,6 @@ class DocumentsController < ApplicationController
 		end
 		#render 'ciao'
 	end
+	
 	
 end

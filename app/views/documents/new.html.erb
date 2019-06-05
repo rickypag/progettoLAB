@@ -9,7 +9,17 @@
       <%= f.label :titolo %>
       <%= f.text_field :title, class: 'form-control' %>
 
-      <%= f.submit "Carica", class: "btn btn-primary" %>
+      <%= f.submit "Carica pdf", class: "btn btn-primary" %>
+    <% end %>
+    
+    <%= form_for(@document, :url => { :action => :txt } ) do |f| %>
+      
+      <%= f.file_field :file %>
+
+      <%= f.label :titolo %>
+      <%= f.text_field :title, class: 'form-control' %>
+
+      <%= f.submit "Carica txt", class: "btn btn-primary" %>
     <% end %>
 
   </div>

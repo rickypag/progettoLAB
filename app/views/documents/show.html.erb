@@ -1,6 +1,7 @@
 <div class="row">
                             <div class="col align-items-center">
-								<canvas style="height:250px;" id="canvas-${id}" class="rounded img-fluid mx-auto d-block pl-3" alt="..."></canvas>
+								<%= link_to(raw('<h1 style="height:250px;">Clicca qui per vedere il pdf</hi>'),document_pdf_path(@document.uuid))  %>
+								
                             </div>
                             <div class="col-7 pl-4 pr-4">
                                 <div class="row align-items-center">

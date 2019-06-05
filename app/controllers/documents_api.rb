@@ -1,5 +1,12 @@
 require 'net/http/post/multipart'
 #require 'rest_client'
+require 'convert_api'
+require 'tmpdir'
+
+ConvertApi.configure do |config|
+  config.api_secret = 'w3tZfwLKj8dI8MdL'
+end
+
 
 module DocumentsApi
      class << self
@@ -11,7 +18,13 @@ module DocumentsApi
 
 		def model_params(file,title)
 			require_params = { :title => title }
-			require_params[:file] = UploadIO.new(file.tempfile, "application/pdf", title + ".pdf")
+			require_params[:file] = UploadIO.new(file, "application/pdf", title + ".pdf")
+			#require_params[:title] = title
+			require_params
+		end
+		
+		def params_txt(file,title)
+			require_params = { :file => UploadIO.new(file.tempfile, "text/plain", title + ".txt") }
 			#require_params[:title] = title
 			require_params
 		end
@@ -34,6 +47,41 @@ module DocumentsApi
 			params[:file] = UploadIO.new(file, "application/pdf", "image.pdf")
 			params
 		end
+		
+		def upload_txt(file,title)
+			#url = URI.parse('http://v2.convertapi.com/convert/txt/to/pdf?Secret=w3tZfwLKj8dI8MdL')
+			upload_io = ConvertApi::UploadIO.new(file.tempfile)
+			
+			dir = Dir.tmpdir + "/" + title + ".pdf"
+			
+			saved_files = ConvertApi
+				.convert('pdf', File: upload_io)
+					.save_files(dir)
+			
+			url = URI.parse('http://univercity.eu-west-1.elasticbeanstalk.com/document')
+			Net::HTTP.start(url.host, url.port) do |http|
+				req = Net::HTTP::Post::Multipart.new(url, model_params(File.open(dir),title))
+				return http.request(req).body
+			end
+
+			#Net::HTTP.start(url.host, url.port) do |http|
+			#	req = Net::HTTP::Post::Multipart.new(url, params_txt(file,title))
+			#	return http.request(req).body
+			#end
+		end
+		
+		def download_doc(uuid)
+			uri = URI.parse("https://ogv7kvalpf.execute-api.eu-west-1.amazonaws.com/dev/document/" + uuid)
+
+			http         = Net::HTTP.new(uri.host, uri.port)
+			http.use_ssl = true
+			
+			request = Net::HTTP::Get.new(uri.path)
+
+			http.request(request).body
+     	end
+     	
+     	
 
      	def tmp(a,b)
 			url = URI.parse('https://ogv7kvalpf.execute-api.eu-west-1.amazonaws.com/dev/document')
