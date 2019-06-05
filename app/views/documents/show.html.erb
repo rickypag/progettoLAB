@@ -10,6 +10,15 @@
     	                            <div class="col-4 text-center"><%= button_to 'Like', document_mylike_path(@document), method: :post, class: "btn btn-sm btn-success" %><i class="fa fa-thumbs-up"></i></button> </div>
     	                            <div class="col-4 text-center"><%= button_to 'Dislike', document_mydislike_path(@document), method: :post, class: "btn btn-sm btn-danger" %><i class="fa fa-thumbs-down"></i></button></div>
     	                            <div class="col-4 text-center"><%= button_to 'Preferiti', document_preferiti_index_path(@document), method: :post, class: "btn btn-sm btn-primary" %><i class="fa fa-heart"></i></button></div>
+    	                            <div class="col-4 text-center">
+										<% if Like.where(document: @document,student: @student).count == 1 %>
+											<% if Like.where(document: @document,student: @student).first.val == true %>
+											You like this document
+											<% else %>
+											You don't like this document
+											<% end %>
+										<% end %>
+    	                            </div>
                                 </div>
                                 <hr>
                                 <div class="row align-items-center">

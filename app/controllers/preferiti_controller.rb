@@ -1,5 +1,10 @@
 class PreferitiController < ApplicationController
-   before_action :find_document
+	before_action :find_document
+	layout 'principale'
+	
+	def show
+		@preferiti = @student.preferiti
+	end
 
 	def create
 		@student_id = Student.find_by(email: current_user.email)

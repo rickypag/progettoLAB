@@ -2,8 +2,18 @@ class DocumentsController < ApplicationController
 	include ::DocumentsApi
 	layout 'principale'
 	
+	def index
+		if(params.has_key?(:query)  && params[:query] != "")
+			query = params[:query].downcase
+			@documents = Document.where("lower(title) LIKE ?", "%#{query}%")
+		else
+			@documents = Document.none
+		end
+	end
+	
 	def show
 		@document = Document.find params[:id]
+		@student = Student.find_by(email: current_user.email)
 		@current_user = current_user
 	end
 	

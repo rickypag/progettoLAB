@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   resources :students
+  get '/preferiti',    to: 'students#preferiti',    as: 'student_preferiti'
   
   resources :documents do
 	resources :likes

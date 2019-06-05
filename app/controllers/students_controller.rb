@@ -1,12 +1,23 @@
 class StudentsController < ApplicationController
 	layout :resolve_layout
 	before_action :correct_user,   only: [:edit, :update]
+	before_action :current_student
+	
+	def preferiti
+		@preferiti = @student.preferiti
+	end
 	
 	def new
 		@student = Student.new
 	end
 
 	def index
+		if(params.has_key?(:query) && params[:query] != "")
+			query = params[:query].downcase
+			@students = Student.where("lower(username) LIKE ?", "%#{query}%")
+		else
+			@students = Student.none
+		end
 	end
 	
 	def create
@@ -60,6 +71,10 @@ class StudentsController < ApplicationController
       @student = Student.find(params[:id])
       @user = User.find_by(email: @student.email)
       redirect_to(root_url) unless @user == current_user
+    end
+    
+    def current_student
+      @student = Student.find_by(email: current_user.email)
     end 
 	
 end

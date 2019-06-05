@@ -1,0 +1,11 @@
+<div class="row align-items-center">
+        	<div class="col-1" style="min-width: 70px;">
+				<% if document.flag %>
+					<span class="badge badge-pill badge-warning text-dark">Mashup</span>
+				<% else %>
+					<span class="badge badge-pill badge-primary text-light">Appunto</span>
+				<% end %>
+			</div>
+            <%= link_to("#{document.title}",document_path(document), :class => 'col text-left cursor-active')  %>
+            <%= link_to("#{document.creator}",student_path(document.creator), :class => 'col text-left cursor-active')  %>
+</div>
