@@ -2,8 +2,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
 	if resource.is_a?(User) && Student.find_by(email: resource.email)
-		username = Student.find_by(email: resource.email).username
-		"/students/#{username}"
+		"/students/a"
 	else
 		"/students/new"
 	end

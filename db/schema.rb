@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_213359) do
+ActiveRecord::Schema.define(version: 2019_06_07_082417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(version: 2019_06_05_213359) do
 
   create_table "creator", primary_key: "document", id: :string, limit: 36, force: :cascade do |t|
     t.string "student", limit: 20
+  end
+
+  create_table "deletes", force: :cascade do |t|
+    t.string "student_id"
+    t.string "document_id", limit: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "document", primary_key: "uuid", id: :string, limit: 36, force: :cascade do |t|
@@ -77,6 +84,7 @@ ActiveRecord::Schema.define(version: 2019_06_05_213359) do
     t.string "surname", limit: 20
     t.string "bio"
     t.string "email"
+    t.index ["username"], name: "index_student_on_username", unique: true
     t.index ["username"], name: "student_username_key", unique: true
   end
 
@@ -95,6 +103,7 @@ ActiveRecord::Schema.define(version: 2019_06_05_213359) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -105,6 +114,8 @@ ActiveRecord::Schema.define(version: 2019_06_05_213359) do
   add_foreign_key "composition", "page", column: "page", name: "composition_page_fkey"
   add_foreign_key "creator", "document", column: "document", primary_key: "uuid", name: "creator_document_fkey"
   add_foreign_key "creator", "student", column: "student", primary_key: "username", name: "creator_student_fkey"
+  add_foreign_key "deletes", "document", primary_key: "uuid"
+  add_foreign_key "deletes", "student", primary_key: "username"
   add_foreign_key "document", "student", column: "creator", primary_key: "username", name: "document_creator_fkey"
   add_foreign_key "likes", "document", primary_key: "uuid", name: "likes_document_id_fkey"
   add_foreign_key "likes", "student", primary_key: "username", name: "likes_student_id_fkey"
