@@ -2,6 +2,11 @@ class StudentsController < ApplicationController
 	layout :resolve_layout
 	before_action :correct_user,   only: [:edit, :update]
 	before_action :current_student
+	before_action :moderatore?, only: [:fai_mod]
+	
+	def fai_mod
+		@student = 
+	end
 	
 	def preferiti
 		@preferiti = @student.preferiti

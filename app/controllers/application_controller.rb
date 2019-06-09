@@ -1,4 +1,10 @@
 class ApplicationController < ActionController::Base
+  helper_method :moderatore?
+  helper_method :current_student
+  
+  def moderatore?
+    current_user && current_user.role == "moderatore"
+  end
 
   def after_sign_in_path_for(resource)
 	if resource.is_a?(User) && Student.find_by(email: resource.email)
@@ -8,6 +14,10 @@ class ApplicationController < ActionController::Base
 		"/students/new"
 	end
   end
+  
+  def current_student
+	@student = Student.find_by(email: current_user.email)
+  end 
   
   private
   

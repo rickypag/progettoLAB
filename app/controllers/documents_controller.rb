@@ -3,6 +3,8 @@ require 'open-uri'
 class DocumentsController < ApplicationController
 	include ::DocumentsApi
 	layout 'principale'
+	before_action :moderatore?, only: [:delete]
+	before_action :exist?, only: [:show]
 	
 	def pdf
 		#pdf_file = ::DocumentsApi.download_doc("b2055bf7-4d18-40b8-99cf-a0cbe8e2f512")
@@ -36,13 +38,14 @@ class DocumentsController < ApplicationController
 	def index
 		if(params.has_key?(:query)  && params[:query] != "")
 			query = params[:query].downcase
-			@documents = Document.where("lower(title) LIKE ?", "%#{query}%")
+			@documents = Document.where("lower(title) LIKE ? and not eliminato", "%#{query}%")
 		else
 			@documents = Document.none
 		end
 	end
 	
 	def show
+		#render plain: params[:id]
 		@document = Document.find params[:id]
 		@student = Student.find_by(email: current_user.email)
 		@current_user = current_user
@@ -69,6 +72,12 @@ class DocumentsController < ApplicationController
 		#end
 	end
 
+	def delete
+		@document = Document.find params[:document_id]
+		@document.update(eliminato: true)
+		redirect_to current_student
+	end
+	
 	private
 	
 	def post_doc(file,title)
@@ -79,6 +88,11 @@ class DocumentsController < ApplicationController
 			http.request(req)
 		end
 		#render 'ciao'
+	end
+	
+	def exist?
+		@document = Document.find params[:id]
+		raise ActionController::RoutingError.new('Not Found') unless (@document && @document.eliminato == false)
 	end
 	
 	

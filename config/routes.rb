@@ -17,9 +17,13 @@ Rails.application.routes.draw do
   
   resources :documents do
 	resources :likes
+	resources :report
+	post 'report',  to: 'report#create', as: 'reportpost'
 	post 'dislike', to: 'likes#dislike', as: 'mydislike'
 	post 'like',    to: 'likes#like',    as: 'mylike'
 	get  'pdf',     to: 'documents#pdf'
+	put  'delete',     to: 'documents#delete'
+	
   end
   
   resources :documents do

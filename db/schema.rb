@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_213359) do
+ActiveRecord::Schema.define(version: 2019_06_09_185304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,11 +35,19 @@ ActiveRecord::Schema.define(version: 2019_06_05_213359) do
     t.string "student", limit: 20
   end
 
+  create_table "deletes", force: :cascade do |t|
+    t.string "student_id", limit: 20
+    t.string "document_id", limit: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "document", primary_key: "uuid", id: :string, limit: 36, force: :cascade do |t|
     t.string "title", limit: 50, null: false
     t.string "creator", limit: 20, null: false
     t.boolean "flag"
     t.string "ltitle"
+    t.boolean "eliminato"
   end
 
   create_table "favourite", primary_key: ["student_id", "document_id"], force: :cascade do |t|
@@ -68,6 +76,11 @@ ActiveRecord::Schema.define(version: 2019_06_05_213359) do
     t.integer "val", limit: 2, null: false
   end
 
+  create_table "reports", id: false, force: :cascade do |t|
+    t.string "document_id", limit: 36
+    t.string "student_id", limit: 20
+  end
+
   create_table "student", primary_key: "username", id: :string, limit: 20, force: :cascade do |t|
     t.string "university", limit: 50
     t.string "faculty", limit: 50
@@ -77,6 +90,7 @@ ActiveRecord::Schema.define(version: 2019_06_05_213359) do
     t.string "surname", limit: 20
     t.string "bio"
     t.string "email"
+    t.index ["username"], name: "index_student_on_username", unique: true
     t.index ["username"], name: "student_username_key", unique: true
   end
 
@@ -95,6 +109,7 @@ ActiveRecord::Schema.define(version: 2019_06_05_213359) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -105,11 +120,15 @@ ActiveRecord::Schema.define(version: 2019_06_05_213359) do
   add_foreign_key "composition", "page", column: "page", name: "composition_page_fkey"
   add_foreign_key "creator", "document", column: "document", primary_key: "uuid", name: "creator_document_fkey"
   add_foreign_key "creator", "student", column: "student", primary_key: "username", name: "creator_student_fkey"
+  add_foreign_key "deletes", "document", primary_key: "uuid"
+  add_foreign_key "deletes", "student", primary_key: "username"
   add_foreign_key "document", "student", column: "creator", primary_key: "username", name: "document_creator_fkey"
   add_foreign_key "likes", "document", primary_key: "uuid", name: "likes_document_id_fkey"
   add_foreign_key "likes", "student", primary_key: "username", name: "likes_student_id_fkey"
   add_foreign_key "page", "student", column: "owner", primary_key: "username", name: "page_owner_fkey"
   add_foreign_key "rating", "document", column: "document", primary_key: "uuid", name: "rating_document_fkey"
   add_foreign_key "rating", "student", column: "student", primary_key: "username", name: "rating_student_fkey"
+  add_foreign_key "reports", "document", primary_key: "uuid", name: "reports_document_id_fkey"
+  add_foreign_key "reports", "student", primary_key: "username", name: "reports_student_id_fkey"
   add_foreign_key "tag", "document", column: "document", primary_key: "uuid", name: "tag_document_fkey"
 end

@@ -34,5 +34,25 @@
                                     <div class="col text-left text-danger">Dislike</div>
                                     <div id="dislikes" class="col text-right text-danger"><%= @document.likes.where(:val => false).count %> <%= (@document.likes.where(:val => false).count) == 1 ? 'Dislike' : 'Dislikes'%></div>
                                 </div>
+                                <% if Report.where(student_id: current_student, document_id: @document).exists? %>
+									Hai già segnalato questo documento
+								<% else %>
+									<%= button_to( "Segnala", document_reportpost_path(@document), method: :post, :disabled => false) %>
+								<% end %>
+								<br>
+                            
+                            
+                            <% if moderatore? %>
+                          
+								Il documento è stato segnalato <%= @document.report.count %> <%= @document.report.count == 1? 'volta' : 'volte' %>
+								
+								<% if @document.report.count == 1 %>
+									<%= button_to( "Elimina", document_delete_path(@document), method: :put, :disabled => false) %>
+								<% else %>
+									<%= button_to( "Elimina", document_delete_path(@document), method: :put, :disabled => true) %>
+								<% end %>
+                            							
+                            <% end %>
                             </div>
+
                         </div>

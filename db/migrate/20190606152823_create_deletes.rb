@@ -5,6 +5,6 @@ class CreateDeletes < ActiveRecord::Migration[5.2]
     #  t.references :document, foreign_key: { to_table: 'document' }
 	#
     #  t.timestamps
-    end
+    #end
   end
 end
