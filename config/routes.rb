@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   
   root 'static_pages#home'
-
+	
+  resources :users #per test
   resources :students
   get '/preferiti',    to: 'students#preferiti',    as: 'student_preferiti'
   
