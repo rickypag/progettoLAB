@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { registrations: "registrations", :omniauth_callbacks => "users/omniauth_callbacks"}
+  devise_for :users, controllers: { registrations: "registrations"}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   get 'signup' => 'users#new'
@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   resources :students
+<<<<<<< HEAD
   get '/preferiti',    to: 'students#preferiti',    as: 'student_preferiti'
   
   get '/pdf', to: 'documents#pdf'
@@ -29,4 +30,6 @@ Rails.application.routes.draw do
   resources :documents do
 	resources :preferiti
   end
+=======
+>>>>>>> c63412f323eb3b6124db28c340a232abef7923b1
 end
