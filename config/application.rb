@@ -11,7 +11,7 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
-require "rails/test_unit/railtie"
+# require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -30,6 +30,9 @@ module Progettolab
     config.serve_static_assets = true
     
     config.assets.initialize_on_precompile = false
+    
+    #config.autoload_paths += %W(#{config.root}/lib) # add this line
+    config.autoload_paths << Rails.root.join('app', 'lib', 'modules')
 
     # Don't generate system test files.
     config.generators.system_tests = nil

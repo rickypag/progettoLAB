@@ -1,0 +1,11 @@
+<div class="row align-items-center">
+        	<div class="col-1" style="min-width: 70px;">
+				<% if Document.where(uuid: preferiti.document_id).first.flag %>
+					<span class="badge badge-pill badge-warning text-dark">Mashup</span>
+				<% else %>
+					<span class="badge badge-pill badge-primary text-light">Appunto</span>
+				<% end %>
+			</div>
+            <docTitle class="col text-left cursor-active" ><%= Document.where(uuid: preferiti.document_id).first.title %></docTitle>
+            <profile class="col text-center cursor-active" ><%= Document.where(uuid: preferiti.document_id).first.creator %></profile>
+</div>

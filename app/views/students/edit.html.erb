@@ -1,0 +1,27 @@
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@student) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :surname %>
+      <%= f.text_field :surname, class: 'form-control' %>
+
+      <%= f.label :faculty %>
+      <%= f.text_field :faculty, class: 'form-control' %>
+
+      <%= f.label :university %>
+      <%= f.text_field :university, class: 'form-control' %>
+      
+      <%= f.label :bio %>
+      <%= f.text_field :bio, class: 'form-control' %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

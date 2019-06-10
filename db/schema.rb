@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_06_09_185304) do
-=======
-ActiveRecord::Schema.define(version: 2019_06_07_082417) do
->>>>>>> c63412f323eb3b6124db28c340a232abef7923b1
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,11 +36,7 @@ ActiveRecord::Schema.define(version: 2019_06_07_082417) do
   end
 
   create_table "deletes", force: :cascade do |t|
-<<<<<<< HEAD
     t.string "student_id", limit: 20
-=======
-    t.string "student_id"
->>>>>>> c63412f323eb3b6124db28c340a232abef7923b1
     t.string "document_id", limit: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

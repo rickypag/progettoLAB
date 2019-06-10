@@ -14,9 +14,13 @@
 
 <body id="page-top">
 
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+
 <!-- Page Wrapper -->
 <div id="wrapper">
-
+	
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion side " id="accordionSidebar">
 
@@ -34,12 +38,9 @@
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
             
-            <a class="nav-link " href="ricerca.html">
-                <i class="fas text-l fa-search"></i>
-                <span class="text-l">Ricerca</span></a>
-            <a class="nav-link" href="index.php">
-                <i class="fas text-l fa-heart"></i>
-                <span class="text-l">Preferiti</span></a>
+            <%= link_to(raw("<i class='fas text-l fa-heart'></i><span class='text-l'>Ricerca</span>"),documents_path, :class => 'nav-link')  %>
+            <%= link_to(raw("<i class='fas text-l fa-heart'></i><span class='text-l'>Ricerca Utenti</span>"),students_path, :class => 'nav-link')  %>
+            <%= link_to(raw("<i class='fas text-l fa-heart'></i><span class='text-l'>Preferiti</span>"),student_preferiti_path, :class => 'nav-link')  %>
             <a class="nav-link" href="mashup.html">
                 <i class="fas text-l fa-edit"></i>
                 <span class="text-l">Mashup</span></a>
@@ -74,10 +75,25 @@
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
+					
+					
+					    <%= form_tag documents_path, method: :get do %>
+							<%= text_field_tag :query %>
+
+							<%= submit_tag "Cerca documento", class: "btn btn-primary" %>
+						<% end %>
+						
+						<%= form_tag students_path, method: :get do %>
+							<%= text_field_tag :query %>
+
+							<%= submit_tag "Cerca utente", class: "btn btn-primary" %>
+						<% end %>
+					
                     <div class="text-right mx-auto text-center mt-4 mb-3">
                         <a href="#aboutModal" data-toggle="modal" data-target="#myModal" class="btn btn-warning rounded-btn p-auto pb-2">
-                            <span class="icon text-black-50"><i class="fas fa-plus-circle"></i> </span>
-                            <span class="text text-black-50">Carica</span>
+                            <span class="icon text-black-50"><i class="fas fa-plus-circle"></i>
+                            <%= link_to("Carica",new_document_path, :class => 'text text-black-50' ) %>
+                             </span>
                         </a>
                     </div>
                     <div class="topbar-divider d-none d-sm-block"></div>
@@ -87,7 +103,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2  d-lg-inline text-gray-600 small">
-                            <%= @student.name %> <%= @student.surname %>
+                            Profilo
                             </span>
                         </a>
                     </li>

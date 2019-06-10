@@ -22,6 +22,7 @@
                             <div class="row my-mg">
                                 <div class="col text-center mt-5">
                                     <p class="h3"><%= @student.username %></p>
+                                    
                                 </div>
                                 <div class="col text-center mt-5">
                                     <p class="h3"><%= @student.faculty %></p>
@@ -30,7 +31,6 @@
                             <p class="lead text-danger mt-4">Bio</p>
                             <hr class="my-1">
                             <p id="userBio"><%= @student.bio %></p>
-<<<<<<< HEAD
 
                         	<% if moderatore? %>
 								<%= link_to "Modifica il profilo", edit_student_path, :class => "btn btn-warning addmashup-button" %>
@@ -38,13 +38,6 @@
 							<% if @student.email == @current_user.email %>
 								<%= button_to( "Fai moderatore", document_delete_path(@document), method: :put, :disabled => false) %>
 							<% end %>
-=======
-                            
-                            <button id="modificaBtn" data-toggle="modal" data-target="#myModal1" class="btn btn-warning addmashup-button">
-                            	<span class="icon text-dark"><i class="fas fa-plus-circle"></i> </span>
-                            	<span class="text text-dark">Modifica</span>
-                        	</button>
->>>>>>> c63412f323eb3b6124db28c340a232abef7923b1
                         </center>
                     </div>
 
@@ -61,6 +54,9 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <p>
+		</p>
                 </center>
 
                 <!-- /.container-fluid -->
