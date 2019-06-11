@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_09_185304) do
+ActiveRecord::Schema.define(version: 2019_06_11_131928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(version: 2019_06_09_185304) do
 
   create_table "creator", primary_key: "document", id: :string, limit: 36, force: :cascade do |t|
     t.string "student", limit: 20
+  end
+
+  create_table "cronologia", force: :cascade do |t|
+    t.string "document_id", limit: 36
+    t.string "student_id", limit: 20
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "deletes", force: :cascade do |t|
@@ -120,6 +127,8 @@ ActiveRecord::Schema.define(version: 2019_06_09_185304) do
   add_foreign_key "composition", "page", column: "page", name: "composition_page_fkey"
   add_foreign_key "creator", "document", column: "document", primary_key: "uuid", name: "creator_document_fkey"
   add_foreign_key "creator", "student", column: "student", primary_key: "username", name: "creator_student_fkey"
+  add_foreign_key "cronologia", "document", primary_key: "uuid"
+  add_foreign_key "cronologia", "student", primary_key: "username"
   add_foreign_key "deletes", "document", primary_key: "uuid"
   add_foreign_key "deletes", "student", primary_key: "username"
   add_foreign_key "document", "student", column: "creator", primary_key: "username", name: "document_creator_fkey"

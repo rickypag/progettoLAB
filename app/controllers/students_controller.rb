@@ -2,14 +2,33 @@ class StudentsController < ApplicationController
 	layout :resolve_layout
 	before_action :correct_user,   only: [:edit, :update]
 	before_action :current_student
-	before_action :moderatore?, only: [:fai_mod]
+	before_action :moderatore?, only: [:fai_mod, :delete_mod]
+	before_action :find_student
 	
 	def fai_mod
-		@student = 
+		User.where(email: @this_student.email).first.update(role: "moderatore")
+		flash[:success] = "Questo utente ora è un moderatore"
+		redirect_to @this_student
+	end
+	
+	def delete_mod
+		User.where(email: @this_student.email).first.update(role: "student")
+		flash[:success] = "Questo utente non è più un moderatore"
+		redirect_to @this_student
 	end
 	
 	def preferiti
 		@preferiti = @student.preferiti
+	end
+	
+	def cronologia
+		@cronologium = @student.cronologium.order(created_at: :desc)
+	end
+	
+	def cancella_cronologia
+		Cronologium.where(student_id: current_student).delete_all
+		flash[:success] = "La cronologia è stata cancellata con successo"
+		redirect_to student_cronologia_path
 	end
 	
 	def new
@@ -81,5 +100,9 @@ class StudentsController < ApplicationController
     def current_student
       @student = Student.find_by(email: current_user.email)
     end 
+    
+    def find_student
+		@this_student = Student.where(username: params[:student_id]).first
+	end
 	
 end

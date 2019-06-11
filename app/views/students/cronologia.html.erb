@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-8">
+	<%= button_to("Cancella cronologia", student_delete_cronologia_path, method: :post)  %>
+    <% if @student.cronologium.any? %>
+      <h3>Cronologia (<%= @student.cronologium.count %>)</h3>
+      <ol class="microposts">
+        <%= render @cronologium %>
+      </ol>
+    <% end %>
+  </div>
+</div>

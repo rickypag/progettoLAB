@@ -4,6 +4,7 @@ class Student < ApplicationRecord
 	has_many :likes, dependent: :destroy
 	has_many :preferiti, dependent: :destroy
 	has_many :report, dependent: :destroy
+	has_many :cronologium, dependent: :destroy
 	
 	validates :name, presence: true, length: { maximum: 10 }
 	validates :surname, presence: true, length: { maximum: 10 }

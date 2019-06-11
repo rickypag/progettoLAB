@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :students do
 	post '/mod',   to: 'students#fai_mod'
 	post '/nomod', to: 'students#delete_mod'
+	resources :cronologium
   end
   
 
@@ -21,6 +22,8 @@ Rails.application.routes.draw do
   resources :students
 
   get '/preferiti',    to: 'students#preferiti',    as: 'student_preferiti'
+  get '/cronologia',    to: 'students#cronologia',    as: 'student_cronologia'
+  post '/cronologia',    to: 'students#cancella_cronologia',    as: 'student_delete_cronologia'
   
   get '/pdf', to: 'documents#pdf'
   post '/document_txt', to: 'documents#txt'

@@ -9,9 +9,11 @@ class PreferitiController < ApplicationController
 	def create
 		@student_id = Student.find_by(email: current_user.email)
 		if already_favourite?
-			flash[:notice] = "Already it is your favourite"
+			Preferiti.where(student: Student.find_by(email: current_user.email)).delete_all
+			flash[:notice] = "Non è più un tuo preferito"
 		else
 			@document.preferiti.create(student: Student.find_by(email: current_user.email))
+			flash[:notice] = "Hai aggiunto questo documento ai tuoi preferiti"
 		end
 		redirect_to document_path(@document)
 	end

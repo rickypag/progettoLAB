@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       log_in @user
       redirect_to :controller => 'students', :action => 'create'
     else
-      render 'newaaaa'
+      render 'new'
     end
   end
 

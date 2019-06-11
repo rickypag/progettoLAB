@@ -47,7 +47,12 @@ class DocumentsController < ApplicationController
 	def show
 		#render plain: params[:id]
 		@document = Document.find params[:id]
-		@student = Student.find_by(email: current_user.email)
+		c = Cronologium.where(student_id: current_student, document_id: @document).first
+		if !!c
+			Cronologium.where(student_id: current_student, document_id: @document).delete_all
+		end
+		current_student.cronologium.create(document: @document)
+		@student = current_student
 		@current_user = current_user
 	end
 	

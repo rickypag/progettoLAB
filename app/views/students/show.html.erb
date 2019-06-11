@@ -32,11 +32,15 @@
                             <hr class="my-1">
                             <p id="userBio"><%= @student.bio %></p>
 
-                        	<% if moderatore? %>
+                        	<% if @student.email == @current_user.email %>
 								<%= link_to "Modifica il profilo", edit_student_path, :class => "btn btn-warning addmashup-button" %>
 							<% end %>
-							<% if @student.email == @current_user.email %>
-								<%= button_to( "Fai moderatore", document_delete_path(@document), method: :put, :disabled => false) %>
+							<% if moderatore? and @student.email != @current_user.email and User.where(email: @student.email).first.role == "student" %>
+								Questo utente non è un moderatore
+								<%= button_to( "Fai moderatore", student_mod_path(@student), method: :post, :disabled => false) %>
+							<% elsif moderatore? and @student.email != @current_user.email and User.where(email: @student.email).first.role == "moderatore" %>
+								Questo utente è già un moderatore
+								<%= button_to( "Elimina moderatore", student_nomod_path(@student), method: :post, :disabled => false) %>
 							<% end %>
                         </center>
                     </div>
