@@ -3,11 +3,16 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   
   def setup
-	@user = User.new(email: "example@xmdfp.com", password: "foobar", password_confirmation: "foobar")
+	users(:valid_example).password="foobar"
+	users(:valid_example).password_confirmation="foobar"
+	users(:invalid_example).password="bel"
+	users(:invalid_example).password_confirmation="bel"
+	@user = users(:invalid_example)
   end
   
   test "should be valid" do
-	assert @user.valid?
+	assert users(:valid_example).valid?
+	assert_not users(:invalid_example).valid?
   end
   
   test "email should be present" do
@@ -17,7 +22,7 @@ class UserTest < ActiveSupport::TestCase
   
   test "email should be unique" do
     dup_user = @user.dup
-    @user.save
+    #@user.save
     assert_not dup_user.valid?
   end
   
