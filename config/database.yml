@@ -87,10 +87,10 @@ test:
 #production:
 #     url: postgres://univercity:googleworkshop@metadata.czzhwg1jheui.eu-west-1.rds.amazonaws.com/metadata?sslca=config/amazon-rds-ca-cert.pem
 #
-#production:
-#  <<: *default
-#  database: metadata
-#  username: univercity
-#  password: googleworkshop
-#  host: metadata.czzhwg1jheui.eu-west-1.rds.amazonaws.com
-#  port: 5432
+production:
+  <<: *default
+  database: metadata
+  username: univercity
+  password: googleworkshop
+  host: metadata.czzhwg1jheui.eu-west-1.rds.amazonaws.com
+  port: 5432

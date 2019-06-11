@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   
   root 'static_pages#home'
 
-  resources :students
+  resources :students do
+	post '/mod',   to: 'students#fai_mod'
+	post '/nomod', to: 'students#delete_mod'
+  end
+  
   get '/preferiti',    to: 'students#preferiti',    as: 'student_preferiti'
   
   get '/pdf', to: 'documents#pdf'
