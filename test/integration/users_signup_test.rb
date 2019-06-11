@@ -24,9 +24,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                password:              "foobar",
                                password_confirmation: "foobar" }}
     end
-    #assert_template "shared/_error_messages"
-    #assert_template "students/new"
-    #assert_template "layouts/application"
+    
   end
   
 end
