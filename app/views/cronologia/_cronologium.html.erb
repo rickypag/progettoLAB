@@ -1,11 +1,11 @@
 <div class="row align-items-center">
         	<div class="col-1" style="min-width: 70px;">
-				<% if Document.where(uuid: cronologium.document_id).first.flag %>
+				<% if Document.find(cronologium.document_id).flag %>
 					<span class="badge badge-pill badge-warning text-dark">Mashup</span>
 				<% else %>
 					<span class="badge badge-pill badge-primary text-light">Appunto</span>
 				<% end %>
 			</div>
-            <%= link_to("#{Document.where(uuid: cronologium.document_id).first.title}",document_path(Document.where(uuid: cronologium.document_id).first), :class => 'col text-left cursor-active')  %>
-            <%= link_to("#{Document.where(uuid: cronologium.document_id).first.creator}",student_path(Document.where(uuid: cronologium.document_id).first.creator), :class => 'col text-left cursor-active')  %>
+            <%= link_to("#{Document.find(cronologium.document_id).title}",document_path(Document.find(cronologium.document_id)), :class => 'col text-left cursor-active')  %>
+            <%= link_to("#{Document.find(cronologium.document_id).creator}",student_path(Document.find(cronologium.document_id).creator), :class => 'col text-left cursor-active')  %>
 </div>

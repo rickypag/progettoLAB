@@ -35,6 +35,9 @@
                         	<% if @student.email == @current_user.email %>
 								<%= link_to "Modifica il profilo", edit_student_path, :class => "btn btn-warning addmashup-button" %>
 							<% end %>
+							<% if moderatore? %>
+								<%= link_to "Modifica il profilo da moderatore", edit_student_path, :class => "btn btn-warning addmashup-button" %>
+							<% end %>
 							<% if moderatore? and @student.email != @current_user.email and User.where(email: @student.email).first.role == "student" %>
 								Questo utente non è un moderatore
 								<%= button_to( "Fai moderatore", student_mod_path(@student), method: :post, :disabled => false) %>

@@ -1,6 +1,5 @@
 class Document < ApplicationRecord
-	self.table_name = "document"
-	self.primary_key = "uuid"
+	self.primary_key = "document_id"
 	has_many :likes, dependent: :destroy
 	has_many :preferiti, dependent: :destroy
 	has_many :report, dependent: :destroy

@@ -22,7 +22,7 @@ class StudentsController < ApplicationController
 	end
 	
 	def cronologia
-		@cronologium = @student.cronologium.order(created_at: :desc)
+		@cronologium = @student.cronologium.order(timestamp: :desc)
 	end
 	
 	def cancella_cronologia
@@ -94,7 +94,7 @@ class StudentsController < ApplicationController
     def correct_user
       @student = Student.find(params[:id])
       @user = User.find_by(email: @student.email)
-      redirect_to(root_url) unless @user == current_user
+      redirect_to(root_url) unless @user == current_user || moderatore?
     end
     
     def current_student

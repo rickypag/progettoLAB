@@ -63,10 +63,10 @@ class DocumentsController < ApplicationController
 	
 	def create
 		uploaded_io = params[:document][:file]
-		uuid = ::DocumentsApi.getWhatEver(uploaded_io.tempfile,params[:document][:title])
-		if uuid
+		id = ::DocumentsApi.getWhatEver(uploaded_io.tempfile,params[:document][:title])
+		if id
 			flash[:success] = "Documento caricato"
-			@document = Document.find(uuid)
+			@document = Document.find(id)
 			redirect_to @document
 		else
 			flash[:error] = "errore"
