@@ -1,0 +1,112 @@
+2019-06-12 16:33:49 WARN Selenium [DEPRECATION] Selenium::WebDriver::Chrome#driver_path= is deprecated. Use Selenium::WebDriver::Chrome::Service#driver_path= instead.
+                          Prefix Verb     URI Pattern                                                                              Controller#Action
+                new_user_session GET      /users/sign_in(.:format)                                                                 devise/sessions#new
+                    user_session POST     /users/sign_in(.:format)                                                                 devise/sessions#create
+            destroy_user_session DELETE   /users/sign_out(.:format)                                                                devise/sessions#destroy
+user_facebook_omniauth_authorize GET|POST /users/auth/facebook(.:format)                                                           users/omniauth_callbacks#passthru
+ user_facebook_omniauth_callback GET|POST /users/auth/facebook/callback(.:format)                                                  users/omniauth_callbacks#facebook
+               new_user_password GET      /users/password/new(.:format)                                                            devise/passwords#new
+              edit_user_password GET      /users/password/edit(.:format)                                                           devise/passwords#edit
+                   user_password PATCH    /users/password(.:format)                                                                devise/passwords#update
+                                 PUT      /users/password(.:format)                                                                devise/passwords#update
+                                 POST     /users/password(.:format)                                                                devise/passwords#create
+        cancel_user_registration GET      /users/cancel(.:format)                                                                  registrations#cancel
+           new_user_registration GET      /users/sign_up(.:format)                                                                 registrations#new
+          edit_user_registration GET      /users/edit(.:format)                                                                    registrations#edit
+               user_registration PATCH    /users(.:format)                                                                         registrations#update
+                                 PUT      /users(.:format)                                                                         registrations#update
+                                 DELETE   /users(.:format)                                                                         registrations#destroy
+                                 POST     /users(.:format)                                                                         registrations#create
+                          signup GET      /signup(.:format)                                                                        users#new
+                           login GET      /login(.:format)                                                                         sessions#new
+                                 POST     /login(.:format)                                                                         sessions#create
+                            root GET      /                                                                                        static_pages#home
+                     student_mod POST     /students/:student_id/mod(.:format)                                                      students#fai_mod
+                   student_nomod POST     /students/:student_id/nomod(.:format)                                                    students#delete_mod
+       student_cronologium_index GET      /students/:student_id/cronologium(.:format)                                              cronologium#index
+                                 POST     /students/:student_id/cronologium(.:format)                                              cronologium#create
+         new_student_cronologium GET      /students/:student_id/cronologium/new(.:format)                                          cronologium#new
+        edit_student_cronologium GET      /students/:student_id/cronologium/:id/edit(.:format)                                     cronologium#edit
+             student_cronologium GET      /students/:student_id/cronologium/:id(.:format)                                          cronologium#show
+                                 PATCH    /students/:student_id/cronologium/:id(.:format)                                          cronologium#update
+                                 PUT      /students/:student_id/cronologium/:id(.:format)                                          cronologium#update
+                                 DELETE   /students/:student_id/cronologium/:id(.:format)                                          cronologium#destroy
+                        students GET      /students(.:format)                                                                      students#index
+                                 POST     /students(.:format)                                                                      students#create
+                     new_student GET      /students/new(.:format)                                                                  students#new
+                    edit_student GET      /students/:id/edit(.:format)                                                             students#edit
+                         student GET      /students/:id(.:format)                                                                  students#show
+                                 PATCH    /students/:id(.:format)                                                                  students#update
+                                 PUT      /students/:id(.:format)                                                                  students#update
+                                 DELETE   /students/:id(.:format)                                                                  students#destroy
+                           users GET      /users(.:format)                                                                         users#index
+                                 POST     /users(.:format)                                                                         users#create
+                        new_user GET      /users/new(.:format)                                                                     users#new
+                       edit_user GET      /users/:id/edit(.:format)                                                                users#edit
+                            user GET      /users/:id(.:format)                                                                     users#show
+                                 PATCH    /users/:id(.:format)                                                                     users#update
+                                 PUT      /users/:id(.:format)                                                                     users#update
+                                 DELETE   /users/:id(.:format)                                                                     users#destroy
+                                 GET      /students(.:format)                                                                      students#index
+                                 POST     /students(.:format)                                                                      students#create
+                                 GET      /students/new(.:format)                                                                  students#new
+                                 GET      /students/:id/edit(.:format)                                                             students#edit
+                                 GET      /students/:id(.:format)                                                                  students#show
+                                 PATCH    /students/:id(.:format)                                                                  students#update
+                                 PUT      /students/:id(.:format)                                                                  students#update
+                                 DELETE   /students/:id(.:format)                                                                  students#destroy
+               student_preferiti GET      /preferiti(.:format)                                                                     students#preferiti
+              student_cronologia GET      /cronologia(.:format)                                                                    students#cronologia
+       student_delete_cronologia POST     /cronologia(.:format)                                                                    students#cancella_cronologia
+                             pdf GET      /pdf(.:format)                                                                           documents#pdf
+                    document_txt POST     /document_txt(.:format)                                                                  documents#txt
+                  document_likes GET      /documents/:document_id/likes(.:format)                                                  likes#index
+                                 POST     /documents/:document_id/likes(.:format)                                                  likes#create
+               new_document_like GET      /documents/:document_id/likes/new(.:format)                                              likes#new
+              edit_document_like GET      /documents/:document_id/likes/:id/edit(.:format)                                         likes#edit
+                   document_like GET      /documents/:document_id/likes/:id(.:format)                                              likes#show
+                                 PATCH    /documents/:document_id/likes/:id(.:format)                                              likes#update
+                                 PUT      /documents/:document_id/likes/:id(.:format)                                              likes#update
+                                 DELETE   /documents/:document_id/likes/:id(.:format)                                              likes#destroy
+           document_report_index GET      /documents/:document_id/report(.:format)                                                 report#index
+                                 POST     /documents/:document_id/report(.:format)                                                 report#create
+             new_document_report GET      /documents/:document_id/report/new(.:format)                                             report#new
+            edit_document_report GET      /documents/:document_id/report/:id/edit(.:format)                                        report#edit
+                 document_report GET      /documents/:document_id/report/:id(.:format)                                             report#show
+                                 PATCH    /documents/:document_id/report/:id(.:format)                                             report#update
+                                 PUT      /documents/:document_id/report/:id(.:format)                                             report#update
+                                 DELETE   /documents/:document_id/report/:id(.:format)                                             report#destroy
+             document_reportpost POST     /documents/:document_id/report(.:format)                                                 report#create
+              document_mydislike POST     /documents/:document_id/dislike(.:format)                                                likes#dislike
+                 document_mylike POST     /documents/:document_id/like(.:format)                                                   likes#like
+                    document_pdf GET      /documents/:document_id/pdf(.:format)                                                    documents#pdf
+                 document_delete PUT      /documents/:document_id/delete(.:format)                                                 documents#delete
+                       documents GET      /documents(.:format)                                                                     documents#index
+                                 POST     /documents(.:format)                                                                     documents#create
+                    new_document GET      /documents/new(.:format)                                                                 documents#new
+                   edit_document GET      /documents/:id/edit(.:format)                                                            documents#edit
+                        document GET      /documents/:id(.:format)                                                                 documents#show
+                                 PATCH    /documents/:id(.:format)                                                                 documents#update
+                                 PUT      /documents/:id(.:format)                                                                 documents#update
+                                 DELETE   /documents/:id(.:format)                                                                 documents#destroy
+        document_preferiti_index GET      /documents/:document_id/preferiti(.:format)                                              preferiti#index
+                                 POST     /documents/:document_id/preferiti(.:format)                                              preferiti#create
+          new_document_preferiti GET      /documents/:document_id/preferiti/new(.:format)                                          preferiti#new
+         edit_document_preferiti GET      /documents/:document_id/preferiti/:id/edit(.:format)                                     preferiti#edit
+              document_preferiti GET      /documents/:document_id/preferiti/:id(.:format)                                          preferiti#show
+                                 PATCH    /documents/:document_id/preferiti/:id(.:format)                                          preferiti#update
+                                 PUT      /documents/:document_id/preferiti/:id(.:format)                                          preferiti#update
+                                 DELETE   /documents/:document_id/preferiti/:id(.:format)                                          preferiti#destroy
+                                 GET      /documents(.:format)                                                                     documents#index
+                                 POST     /documents(.:format)                                                                     documents#create
+                                 GET      /documents/new(.:format)                                                                 documents#new
+                                 GET      /documents/:id/edit(.:format)                                                            documents#edit
+                                 GET      /documents/:id(.:format)                                                                 documents#show
+                                 PATCH    /documents/:id(.:format)                                                                 documents#update
+                                 PUT      /documents/:id(.:format)                                                                 documents#update
+                                 DELETE   /documents/:id(.:format)                                                                 documents#destroy
+              rails_service_blob GET      /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
+       rails_blob_representation GET      /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
+              rails_disk_service GET      /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
+       update_rails_disk_service PUT      /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
+            rails_direct_uploads POST     /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create

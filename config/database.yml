@@ -66,10 +66,10 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: metadata
-  username: univercity
-  password: googleworkshop
-  host: metadata.czzhwg1jheui.eu-west-1.rds.amazonaws.com
+  database: mio_serv
+  username: postgres
+  password: sodo
+  host: localhost
   port: 5432
 
 # As with config/secrets.yml, you never want to store sensitive information,
