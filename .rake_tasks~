@@ -1,3 +1,4 @@
+16:31:48
 about
 active_storage:install
 app:template
@@ -39,6 +40,9 @@ spec:controllers
 spec:helpers
 spec:models
 stats
+test
+test:db
+test:system
 time:zones[country_or_offset]
 tmp:clear
 tmp:create
