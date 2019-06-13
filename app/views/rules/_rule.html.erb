@@ -1,0 +1,8 @@
+<div class="row align-items-center">
+        	<div class="col-1" style="min-width: 1000px;">
+			<%= rule.testo %>
+            <% if moderatore? %>
+				<%= link_to("Elimina", rule, method: :delete, :class => 'col text-left cursor-active')  %>
+			<% end %>
+			</div>
+</div>

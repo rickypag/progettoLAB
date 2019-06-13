@@ -41,18 +41,23 @@
 								<% end %>
 								<br>
                             
-                            
+                            <hr>
                             <% if moderatore? %>
                           
 								Il documento è stato segnalato <%= @document.report.count %> <%= @document.report.count == 1? 'volta' : 'volte' %>
 								
 								<% if @document.report.count == 1 %>
-									<%= button_to( "Elimina", document_delete_path(@document), method: :put, :disabled => false) %>
+									<%= button_to( "Elimina da moderatore", document_delete_path(@document), method: :put, :disabled => false) %>
 								<% else %>
-									<%= button_to( "Elimina", document_delete_path(@document), method: :put, :disabled => true) %>
+									<%= button_to( "Elimina da moderatore", document_delete_path(@document), method: :put, :disabled => true) %>
 								<% end %>
                             							
                             <% end %>
+                            <% if current_student.username == @document.creator %>
+								<hr>
+								Vuoi eliminare il tuo documento?
+								<%= button_to( "Elimina", document_delete_path(@document), method: :put, :disabled => false) %>
+							<% end %>
                             </div>
 
                         </div>

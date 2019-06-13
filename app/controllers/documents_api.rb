@@ -9,6 +9,7 @@ end
 
 
 module DocumentsApi
+	 
      class << self
      	def headers
      		return {
@@ -16,8 +17,8 @@ module DocumentsApi
      		}
      	end
 
-		def model_params(file,title)
-			require_params = { :title => title }
+		def model_params(file,title,creator)
+			require_params = { :title => title, :creator => creator }
 			require_params[:file] = UploadIO.new(file, "application/pdf", title + ".pdf")
 			#require_params[:title] = title
 			require_params
@@ -34,10 +35,10 @@ module DocumentsApi
 			return Net::HTTP.get(uri) # => String
 		end
 
-    	def getWhatEver(file,title)
+    	def getWhatEver(file,title,creator)
 			url = URI.parse('http://univercity.eu-west-1.elasticbeanstalk.com/document')
 			Net::HTTP.start(url.host, url.port) do |http|
-				req = Net::HTTP::Post::Multipart.new(url, model_params(file,title))
+				req = Net::HTTP::Post::Multipart.new(url, model_params(file,title,creator))
 				return http.request(req).body
 			end
      	end
@@ -48,7 +49,7 @@ module DocumentsApi
 			params
 		end
 		
-		def upload_txt(file,title)
+		def upload_txt(file,title,creator)
 			#url = URI.parse('http://v2.convertapi.com/convert/txt/to/pdf?Secret=w3tZfwLKj8dI8MdL')
 			upload_io = ConvertApi::UploadIO.new(file.tempfile)
 			
@@ -60,7 +61,7 @@ module DocumentsApi
 			
 			url = URI.parse('http://univercity.eu-west-1.elasticbeanstalk.com/document')
 			Net::HTTP.start(url.host, url.port) do |http|
-				req = Net::HTTP::Post::Multipart.new(url, model_params(File.open(dir),title))
+				req = Net::HTTP::Post::Multipart.new(url, model_params(File.open(dir),title,creator))
 				return http.request(req).body
 			end
 

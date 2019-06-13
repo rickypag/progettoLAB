@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 	
   resources :users #per test
   resources :students
+  resources :rules
   
   post   'update_student'   => 'students#update'
   patch   'update_student'   => 'students#update'

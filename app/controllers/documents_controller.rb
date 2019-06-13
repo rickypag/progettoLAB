@@ -18,21 +18,21 @@ class DocumentsController < ApplicationController
 	def txt
 		uploaded_io = params[:document][:file]
 		title = params[:document][:title]
-		uuid = ::DocumentsApi.upload_txt(uploaded_io,title)
-		render plain: uuid
+		uuid = ::DocumentsApi.upload_txt(uploaded_io,title,current_student.username)
+		#render plain: uuid
 		#file = (JSON.parse resp)['Files'][0]['FileData']
 		#render plain: resp
 		#file = Base64.decode64(file)
 		#uuid = ::DocumentsApi.getWhatEver(file,params[:document][:title])
-		#if uuid
-		#	flash[:success] = "Documento caricato"
-		#	@document = Document.find(uuid)
-		#	redirect_to @document
-		#else
-		#	flash[:error] = "errore"
-		#	render 'documents/new'
-		#end
-		#send_data file, filename: "doc.pdf", type: "application/pdf", disposition: 'inline'
+		if uuid
+			flash[:success] = "Documento caricato"
+			@document = Document.find(uuid)
+			redirect_to @document
+		else
+			flash[:error] = "errore"
+			render 'documents/new'
+		end
+		
 	end
 	
 	def index
@@ -63,7 +63,7 @@ class DocumentsController < ApplicationController
 	
 	def create
 		uploaded_io = params[:document][:file]
-		id = ::DocumentsApi.getWhatEver(uploaded_io.tempfile,params[:document][:title])
+		id = ::DocumentsApi.getWhatEver(uploaded_io.tempfile,params[:document][:title],current_student.username)
 		if id
 			flash[:success] = "Documento caricato"
 			@document = Document.find(id)

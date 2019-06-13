@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-8">
+    <% if @rules.any? %>
+      <h3>Risultati (<%= @rules.count %>)</h3>
+      <ol class="microposts">
+        <%= render @rules %>
+      </ol>
+    <% end %>
+  </div>
+  <br>
+  <div>
+	<% if moderatore? %>
+		<%= link_to "Aggiungi regola", new_rule_path, :class => "btn btn-warning addmashup-button" %>
+	<% end %>
+  </div>
+</div>
