@@ -16,11 +16,15 @@ Rails.application.routes.draw do
 	resources :cronologium
   end
   
+  
 
 	
   resources :users #per test
   resources :students
-
+  
+  post   'update_student'   => 'students#update'
+  patch   'update_student'   => 'students#update'
+  
   get '/preferiti',    to: 'students#preferiti',    as: 'student_preferiti'
   get '/cronologia',    to: 'students#cronologia',    as: 'student_cronologia'
   post '/cronologia',    to: 'students#cancella_cronologia',    as: 'student_delete_cronologia'
