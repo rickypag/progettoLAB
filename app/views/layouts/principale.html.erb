@@ -43,6 +43,10 @@
             <%= link_to(raw("<i class='fas text-l fa-heart'></i><span class='text-l'>Preferiti</span>"),student_preferiti_path, :class => 'nav-link')  %>
             <%= link_to(raw("<i class='fas text-l fa-heart'></i><span class='text-l'>Cronologia</span>"),student_cronologia_path, :class => 'nav-link')  %>
             <%= link_to(raw("<i class='fas text-l fa-heart'></i><span class='text-l'>Regole</span>"),rules_path, :class => 'nav-link')  %>
+            <%= link_to(raw("<i class='fas text-l fa-heart'></i><span class='text-l'>Invia consiglio</span>"),new_consiglio_path, :class => 'nav-link')  %>
+            <% if moderatore? %>
+				<%= link_to(raw("<i class='fas text-l fa-heart'></i><span class='text-l'>Leggi consigli</span>"),consiglios_path, :class => 'nav-link')  %>
+			<% end %>
             <a class="nav-link" href="mashup.html">
                 <i class="fas text-l fa-edit"></i>
                 <span class="text-l">Mashup</span></a>

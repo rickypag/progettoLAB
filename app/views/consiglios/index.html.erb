@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-md-8">
+    <% if @consiglios.any? %>
+      <h3>Risultati (<%= @consiglios.count %>)</h3>
+      <ol class="microposts">
+        <%= render @consiglios %>
+      </ol>
+    <% end %>
+  </div>
+</div>

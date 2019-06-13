@@ -1,0 +1,9 @@
+<div class="row align-items-center">
+        	<div class="col-1" style="min-width: 1000px;">
+			<%= consiglio.testo %>
+			<%= link_to("#{consiglio.user.email}", "#", :class => 'col text-left cursor-active')  %>
+            <% if moderatore? %>
+				<%= link_to("Elimina", consiglio, method: :delete, :class => 'col text-left cursor-active')  %>
+			<% end %>
+			</div>
+</div>

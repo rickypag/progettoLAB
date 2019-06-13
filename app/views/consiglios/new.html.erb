@@ -1,0 +1,13 @@
+<h1>Invia un consiglio ai moderatori!</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+	<%= form_for(@consiglio) do |f| %>
+      <%= f.label :testo %>
+      <%= f.text_area :testo, size: '50x10', class: 'form-control' %>
+
+      <%= f.submit "Invia consiglio", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

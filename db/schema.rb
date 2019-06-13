@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_13_183730) do
+ActiveRecord::Schema.define(version: 2019_06_13_192324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(version: 2019_06_13_183730) do
     t.float "w"
   end
 
+  create_table "consiglios", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_consiglios_on_user_id"
+  end
+
   create_table "creator", id: false, force: :cascade do |t|
     t.string "document_id", limit: 36, null: false
     t.string "student_id", limit: 20
@@ -42,77 +49,3 @@ ActiveRecord::Schema.define(version: 2019_06_13_183730) do
     t.datetime "timestamp", default: -> { "CURRENT_TIMESTAMP" }, null: false
   end
 
-  create_table "documents", primary_key: "document_id", id: :string, limit: 36, force: :cascade do |t|
-    t.string "title", limit: 50, null: false
-    t.string "creator", limit: 20, null: false
-    t.boolean "flag"
-    t.boolean "eliminato", default: false
-    t.index ["document_id"], name: "unique_id", unique: true
-  end
-
-  create_table "favourite", id: false, force: :cascade do |t|
-    t.string "document_id", limit: 36, null: false
-    t.string "student_id", limit: 20
-    t.datetime "timestamp", default: -> { "CURRENT_TIMESTAMP" }, null: false
-  end
-
-  create_table "likes", id: false, force: :cascade do |t|
-    t.string "document_id", limit: 36, null: false
-    t.string "student_id", limit: 20
-    t.datetime "timestamp", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.boolean "val"
-  end
-
-  create_table "pages", id: false, force: :cascade do |t|
-    t.string "page_id", limit: 36, null: false
-    t.string "student_id", limit: 20
-  end
-
-  create_table "reports", id: false, force: :cascade do |t|
-    t.string "document_id", limit: 36, null: false
-    t.string "student_id", limit: 20
-    t.datetime "timestamp", default: -> { "CURRENT_TIMESTAMP" }, null: false
-  end
-
-  create_table "rules", force: :cascade do |t|
-    t.string "testo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "student", primary_key: "username", id: :string, limit: 20, force: :cascade do |t|
-    t.string "university", limit: 50
-    t.string "faculty", limit: 50
-    t.bigint "xp"
-    t.string "image"
-    t.string "name", limit: 10
-    t.string "surname", limit: 20
-    t.string "bio"
-    t.string "email", limit: 50
-    t.index ["username"], name: "unique_username", unique: true
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "provider"
-    t.string "uid"
-    t.integer "role"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  add_foreign_key "cronologia", "documents", primary_key: "document_id", name: "cronologia_document_id_fkey"
-  add_foreign_key "cronologia", "student", primary_key: "username", name: "cronologia_student_id_fkey"
-  add_foreign_key "favourite", "documents", primary_key: "document_id", name: "favourite_document_id_fkey"
-  add_foreign_key "favourite", "student", primary_key: "username", name: "favourite_student_id_fkey"
-  add_foreign_key "likes", "documents", primary_key: "document_id", name: "likes_document_id_fkey"
-  add_foreign_key "likes", "student", primary_key: "username", name: "likes_student_id_fkey"
-  add_foreign_key "reports", "documents", primary_key: "document_id", name: "reports_document_id_fkey"
-  add_foreign_key "reports", "student", primary_key: "username", name: "reports_student_id_fkey"
-end
