@@ -66,9 +66,9 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: mio_serv
-  username: postgres
-  password: sodo
+  database: <%= ENV.fetch("DB_NAME") { "" } %>
+  username: ricky
+  password: <%= ENV.fetch("DB_PASSWORD") { "" } %>
   host: localhost
   port: 5432
 

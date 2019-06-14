@@ -43,9 +43,47 @@ ActiveRecord::Schema.define(version: 2019_06_13_192324) do
     t.string "student_id", limit: 20
   end
 
-  create_table "cronologia", id: false, force: :cascade do |t|
-    t.string "document_id", limit: 36, null: false
-    t.string "student_id", limit: 20
-    t.datetime "timestamp", default: -> { "CURRENT_TIMESTAMP" }, null: false
+  create_table "documents", primary_key: "document_id", id: :string, limit: 36, force: :cascade do |t|
+    t.string "title", limit: 50, null: false
+    t.string "student_id", limit: 20, null: false
+    t.boolean "flag"
+    t.boolean "eliminato"
   end
 
+  create_table "pages", id: false, force: :cascade do |t|
+    t.string "page_id", limit: 36, null: false
+    t.string "student_id", limit: 20
+  end
+
+  create_table "rules", force: :cascade do |t|
+    t.string "testo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "student", primary_key: "username", id: :string, limit: 20, force: :cascade do |t|
+    t.string "university", limit: 50
+    t.string "faculty", limit: 50
+    t.string "email", limit: 50
+    t.bigint "xp"
+    t.string "image"
+    t.string "name", limit: 10
+    t.string "surname", limit: 20
+    t.string "bio"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "role"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "consiglios", "users"
+end
